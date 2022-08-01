@@ -6,6 +6,10 @@ Examples for Pimoroni's [HyperPixel 4.0 Square](https://shop.pimoroni.com/produc
 
 - [HyperClock](./clock/hyperclock.py)
 
+## Note
+
+> You can adapt, improve and use the code for your projects as you wish. The author of this repository take no responsibility for your use or misuse or any damage on your devices!
+
 ## Usage
 
 ### Run example clock
