@@ -4,7 +4,7 @@ Examples for Pimoroni's [HyperPixel 4.0 Square](https://shop.pimoroni.com/produc
 
 ## Table of contents
 
-- [HyperClock](./clock)
+- [HyperClock](./clock/hyperclock.py)
 
 ## Usage
 
