@@ -8,6 +8,10 @@ Examples for Pimoroni's [HyperPixel 4.0 Square](https://shop.pimoroni.com/produc
 
 ## Usage
 
+### Run example clock
+
+> You can run all examples in this form.
+
 ```shell
 # change into HOME
 $ cd ~
@@ -24,7 +28,7 @@ $ python3 hyperclock.py
 
 ### Install fonts
 
-> Please note that the fonts are only available for private use!
+> Please note that the fonts are only available for private use _(see [www.1001freefonts.com](https://www.1001freefonts.com))_!
 
 ```shell
 # create directory
