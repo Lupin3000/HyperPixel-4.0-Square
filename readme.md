@@ -31,5 +31,5 @@ $ python3 hyperclock.py
 $ mkdir ~/.fonts
 
 # copy all fonts
-$ cp ~/HyperPixel-4.0-Square/*.ttf ~/.fonts
+$ cp ~/HyperPixel-4.0-Square/*.ttf ~/.fonts/
 ```
