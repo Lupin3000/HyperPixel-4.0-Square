@@ -15,11 +15,16 @@ $ cd ~
 # clone repository
 $ git clone https://github.com/Lupin3000/HyperPixel-4.0-Square.git
 
-# change into cloned repository
-$ cd ~/HyperPixel-4.0-Square/
+# change into example (eq. clock)
+$ cd ~/HyperPixel-4.0-Square/clock/
+
+# execute (stop with <ESCAPE>)
+$ python3 hyperclock.py
 ```
 
 ### Install fonts
+
+> Please note that the fonts are only available for private use!
 
 ```shell
 # create directory
