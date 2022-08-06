@@ -12,6 +12,7 @@ high-speed, 4.0" display with optional touchscreen for Raspberry Pi written in P
 
 - [HyperClock](./clock/hyperclock.py)
 - [HyperStream](./rtsp/hyperstream.py) *Note: does not work on Raspberry PI Zero*
+- [HyperCarousel](./carousel/hypercarousel.py)
 
 ## Note
 
