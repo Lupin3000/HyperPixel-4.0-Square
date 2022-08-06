@@ -9,7 +9,10 @@ class HyperStream:
     simple rtsp client for hyperpixel 4.0 square
     """
     def __init__(self, source):
-
+        """
+        initiate object with all settings
+        :param source: string of rtsp://...
+        """
         if source:
             self.cap = cv2.VideoCapture(source)
         else:
@@ -60,6 +63,10 @@ class HyperStream:
         self.window.after(5, self.update_image)
 
     def exit(self):
+        """
+        release stream and close window
+        :return: None
+        """
         self.cap.release()
         self.window.quit()
 
