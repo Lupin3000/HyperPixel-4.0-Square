@@ -24,6 +24,7 @@ if __name__ == '__main__':
     Config.set('graphics', 'width', '720')
     Config.set('graphics', 'height', '720')
     Window.fullscreen = True
+    Window.maximize()
     # Config.set('graphics', 'fullscreen', 'auto')
 
     HyperCarousel().run()
