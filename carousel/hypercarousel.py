@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.uix.carousel import Carousel
 from kivy.uix.image import AsyncImage
 from kivy.clock import Clock
+from kivy.core.window import Window
 from kivy.config import Config
 
 
@@ -22,6 +23,7 @@ class HyperCarousel(App):
 if __name__ == '__main__':
     Config.set('graphics', 'width', '720')
     Config.set('graphics', 'height', '720')
+    Window.fullscreen = True
     # Config.set('graphics', 'fullscreen', 'auto')
 
     HyperCarousel().run()
