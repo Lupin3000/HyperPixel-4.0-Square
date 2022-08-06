@@ -49,6 +49,26 @@ $ mkdir ~/.fonts
 $ cp ~/HyperPixel-4.0-Square/*.ttf ~/.fonts/
 ```
 
+### Raspberry Bullseye
+
+On bullseye you don't need to install any library/package for Hyperpixel! Also, i2c don't need to be enabled. 
+The only thing you need to do, is to add one line in `/boot/config.txt`.
+
+```shell
+# start editor
+$ sudo vim /boot/config.txt
+```
+
+Here the example:
+
+```
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d
+dtoverlay=vc4-kms-dpi-hyperpixel4sq
+```
+
+Restart the device and the display should work!
+
 ### Install python dependencies
 
 > Some example directories include also the requirements.txt file.
