@@ -1,3 +1,6 @@
+import os
+os.environ['KIVY_GL_BACKEND'] = 'gl'
+
 from kivy.app import App
 from kivy.uix.carousel import Carousel
 from kivy.uix.image import AsyncImage
