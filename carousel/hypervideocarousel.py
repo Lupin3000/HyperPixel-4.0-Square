@@ -1,21 +1,25 @@
+import os
+
+os.environ['KIVY_VIDEO'] = 'ffpyplayer'
+
 from kivy.app import App
 from kivy.uix.carousel import Carousel
-from kivy.uix.image import AsyncImage
 from kivy.clock import Clock
+from kivy.uix.video import Video
 from kivy.core.window import Window
 from kivy.config import Config
 
 
-class HyperCarousel(App):
+class VideoCarousel(App):
 
     def build(self):
         carousel = Carousel(direction='right', loop=True)
 
-        for i in range(4):
-            src = f"pictures/demo_{i}.png"
-            image = AsyncImage(source=src, allow_stretch=True)
-            carousel.add_widget(image)
-            Clock.schedule_interval(carousel.load_next, 5)
+        for i in range(0, 3):
+            src = f"videos/demo_{i}.mp4"
+            video = Video(source=src, play=True, options={'eos': 'loop'})
+            carousel.add_widget(video)
+            Clock.schedule_interval(carousel.load_next, 4)
 
         return carousel
 
@@ -23,7 +27,6 @@ class HyperCarousel(App):
 if __name__ == '__main__':
     Config.set('graphics', 'width', '720')
     Config.set('graphics', 'height', '720')
-    Window.fullscreen = True
     Window.maximize()
 
-    HyperCarousel().run()
+    VideoCarousel().run()
