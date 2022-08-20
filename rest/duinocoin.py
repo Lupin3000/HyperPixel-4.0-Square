@@ -18,8 +18,6 @@ class HyperDuinoCoin:
         """
         if user:
             self.user = str(user)
-            self.txt_stake_amount = None
-
             self.window = tk.Tk()
             self._config_window()
             self._add_widgets()
