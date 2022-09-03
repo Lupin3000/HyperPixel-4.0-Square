@@ -62,7 +62,7 @@ The only thing you need to do, is to add one line in `/boot/config.txt`.
 $ sudo vim /boot/config.txt
 ```
 
-Here the example:
+Example of `/boot/config.txt` to enable hyperpixel display:
 
 ```
 # Enable DRM VC4 V3D driver
@@ -74,24 +74,21 @@ Restart the device and the display should work!
 
 ### Install python dependencies
 
-> Some example directories include also the requirements.txt file.
-
 ```shell
-# create directory
+# install via pip from file
 $ pip3 install -r requirements.txt
 
-# verify installed packages (optional)
+# verify installed pip packages (optional)
 $ pip3 freeze
 ```
+
+## Error
 
 If you failed and see error like "No module named cv2"
 
 ```shell
-# update apt
-$ sudo apt update
-
-# install opencv
-$ sudo apt install python3-opencv
+# update apt and install needed apt packages
+$ sudo apt update && sudo apt install python3-opencv
 
 # verify installation (optional)
 $ python3 -c "import cv2"
@@ -100,13 +97,9 @@ $ python3 -c "import cv2"
 If you failed and see error like "cannot import name ImageTk from PIL"
 
 ```shell
-# update apt
-$ sudo apt update
-
-# install opencv
-$ sudo apt install python3-pil python3-pil.imagetk
+# update apt and install needed apt packages
+$ sudo apt update && sudo apt install python3-pil python3-pil.imagetk
 
 # verify installation (optional)
 $ python3 -c "from PIL import ImageTk"
 ```
-
