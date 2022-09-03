@@ -12,12 +12,15 @@ class HyperDuinoCoin:
     LABEL_BALANCE = None
     LABEl_MINERS = None
 
-    def __init__(self, user):
+    def __init__(self, user: str = 'revox', fullscreen: bool = False) -> None:
         """
         create window and start loop
+        :param user: duino username
+        :param fullscreen: set window fullscreen mode
         """
         if user:
             self.user = str(user)
+            self.fullscreen = bool(fullscreen)
             self.window = tk.Tk()
             self._config_window()
             self._add_widgets()
@@ -27,19 +30,21 @@ class HyperDuinoCoin:
         else:
             exit('Please provide a user name')
 
-    def _config_window(self):
+    def _config_window(self) -> None:
         """
         configure window
         :return: None
         """
-        self.window.title('HyperCoin')
+        self.window.title(f"HyperCoin: {self.user}")
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
         self.window.geometry("720x720+0+0")
         self.window.config(bg="black")
         self.window.bind('<Escape>', exit)
-        self.window.attributes("-fullscreen", True)
 
-    def _add_widgets(self):
+        if self.fullscreen:
+            self.window.attributes("-fullscreen", True)
+
+    def _add_widgets(self) -> None:
         """
         add widgets to window
         :return: None
@@ -56,7 +61,7 @@ class HyperDuinoCoin:
         self.LABEl_MINERS = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
         self.LABEl_MINERS.place(anchor=tk.CENTER, relx=.5, rely=.55)
 
-    def __set_values(self):
+    def __set_values(self) -> None:
         """
         call rest api and update labels
         :return: None
@@ -73,7 +78,7 @@ class HyperDuinoCoin:
 
         self.window.after(1000, self.__set_values)
 
-    def _exit(self, event):
+    def exit(self, event) -> None:
         """
         exit and close window
         :param event:
@@ -83,4 +88,4 @@ class HyperDuinoCoin:
 
 
 if __name__ == '__main__':
-    RUN = HyperDuinoCoin(user='revox')
+    HyperDuinoCoin()

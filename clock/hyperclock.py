@@ -7,34 +7,61 @@ class HyperClock:
     """
     simple digital clock for hyperpixel 4.0 square
     """
-    def __init__(self):
+
+    LABEL_TIME = None
+    LABEL_DAY = None
+    LABEL_DATE = None
+
+    def __init__(self, user: str = 'john', fullscreen: bool = False) -> None:
         """
-        create window with settings and start loop
+        create window and start loop
+        :param user: duino username
+        :param fullscreen: set window fullscreen mode
         """
-        self.window = tk.Tk()
-        self.window.title('HyperClock')
+        if user:
+            self.user = str(user)
+            self.fullscreen = bool(fullscreen)
+            self.window = tk.Tk()
+            self._config_window()
+            self._add_widgets()
+
+            self.window.after(1000, self.__set_current_time)
+            self.window.mainloop()
+        else:
+            exit('Please provide a user name')
+
+    def _config_window(self) -> None:
+        """
+        configure window
+        :return: None
+        """
+        self.window.title(f"HyperClock: {self.user}")
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
         self.window.geometry("720x720+0+0")
         self.window.config(bg="black")
         self.window.bind('<Escape>', exit)
-        self.window.attributes("-fullscreen", True)
 
+        if self.fullscreen:
+            self.window.attributes("-fullscreen", True)
+
+    def _add_widgets(self) -> None:
+        """
+        add widgets to window
+        :return: None
+        """
         big_font = tkf.Font(family="Open 24 Display St", size=90, weight="normal")
         small_font = tkf.Font(family="Open 24 Display St", size=20, weight="normal")
 
-        self.txt_time = tk.Label(self.window, text='', font=big_font, bg="black", fg="#39ff14")
-        self.txt_time.place(anchor=tk.CENTER, relx=.5, rely=.5)
+        self.LABEL_TIME = tk.Label(self.window, text='', font=big_font, bg="black", fg="#39ff14")
+        self.LABEL_TIME.place(anchor=tk.CENTER, relx=.5, rely=.5)
 
-        self.txt_day = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
-        self.txt_day.place(anchor=tk.CENTER, relx=.65, rely=.6)
+        self.LABEL_DAY = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
+        self.LABEL_DAY.place(anchor=tk.CENTER, relx=.65, rely=.6)
 
-        self.txt_date = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
-        self.txt_date.place(anchor=tk.CENTER, relx=.4, rely=.6)
+        self.LABEL_DATE = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
+        self.LABEL_DATE.place(anchor=tk.CENTER, relx=.4, rely=.6)
 
-        self.window.after(1000, self.set_current_time)
-        self.window.mainloop()
-
-    def set_current_time(self):
+    def __set_current_time(self) -> None:
         """
         get values and set into labels
         :return: None
@@ -43,13 +70,13 @@ class HyperClock:
         current_day = f"{time.strftime('%A')}"
         current_date = f"{time.strftime('%B')} {time.strftime('%d')} {time.strftime('%Y')}"
 
-        self.txt_time.configure(text=current_time)
-        self.txt_day.configure(text=current_day)
-        self.txt_date.configure(text=current_date)
+        self.LABEL_TIME.configure(text=current_time)
+        self.LABEL_DAY.configure(text=current_day)
+        self.LABEL_DATE.configure(text=current_date)
 
-        self.window.after(1000, self.set_current_time)
+        self.window.after(1000, self.__set_current_time)
 
-    def exit(self, event):
+    def exit(self, event) -> None:
         """
         exit and close window
         :param event:
@@ -59,4 +86,4 @@ class HyperClock:
 
 
 if __name__ == '__main__':
-    RUN = HyperClock()
+    HyperClock()
