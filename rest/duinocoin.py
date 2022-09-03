@@ -18,19 +18,16 @@ class HyperDuinoCoin:
         :param user: duino username
         :param fullscreen: set window fullscreen mode
         """
-        if user:
-            print(f"[INFO]: username: {user}, fullscreen: {fullscreen}")
-            self.user = str(user)
-            self.fullscreen = bool(fullscreen)
+        print(f"[INFO]: username: {user}, fullscreen: {fullscreen}")
+        self.user = str(user)
+        self.fullscreen = bool(fullscreen)
 
-            self.window = tk.Tk()
-            self._config_window()
-            self._add_widgets()
+        self.window = tk.Tk()
+        self._config_window()
+        self._add_widgets()
 
-            self.window.after(100, self.__set_values)
-            self.window.mainloop()
-        else:
-            exit('Please provide a user name')
+        self.window.after(100, self.__set_values)
+        self.window.mainloop()
 
     def _config_window(self) -> None:
         """
@@ -70,13 +67,18 @@ class HyperDuinoCoin:
         """
         response = requests.get('https://server.duinocoin.com/users/' + self.user)
 
-        if response.status_code == 200:
-            json_response = response.json()
-            txt_balance = f"{json_response['result']['balance']['balance']} DUCO\'s"
-            txt_miners = f"Active miners: {len(json_response['result']['miners'])}"
+        if response.status_code == 200 and 'application/json' in response.headers.get('Content-Type'):
 
-            self._LABEL_BALANCE.configure(text=txt_balance)
-            self._LABEl_MINERS.configure(text=txt_miners)
+            json_response = response.json()
+
+            try:
+                balance = f"{json_response['result']['balance']['balance']} DUCO\'s"
+                miners = f"Active miners: {len(json_response['result']['miners'])}"
+
+                self._LABEL_BALANCE.configure(text=balance)
+                self._LABEl_MINERS.configure(text=miners)
+            except KeyError as e:
+                print(f"[ERROR]: {e}")
 
         self.window.after(1000, self.__set_values)
 

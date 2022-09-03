@@ -18,19 +18,16 @@ class HyperClock:
         :param user: duino username
         :param fullscreen: set window fullscreen mode
         """
-        if user:
-            print(f"[INFO]: username: {user}, fullscreen: {fullscreen}")
-            self.user = str(user)
-            self.fullscreen = bool(fullscreen)
+        print(f"[INFO]: username: {user}, fullscreen: {fullscreen}")
+        self.user = str(user)
+        self.fullscreen = bool(fullscreen)
 
-            self.window = tk.Tk()
-            self._config_window()
-            self._add_widgets()
+        self.window = tk.Tk()
+        self._config_window()
+        self._add_widgets()
 
-            self.window.after(1000, self.__set_current_time)
-            self.window.mainloop()
-        else:
-            exit('Please provide a user name')
+        self.window.after(1000, self.__set_current_time)
+        self.window.mainloop()
 
     def _config_window(self) -> None:
         """

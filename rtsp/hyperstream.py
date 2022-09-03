@@ -8,40 +8,58 @@ class HyperStream:
     """
     simple rtsp client for hyperpixel 4.0 square
     """
-    def __init__(self, source):
+
+    _LABEL_VIDEO = None
+
+    def __init__(self, source: str) -> None:
         """
         initiate object with all settings
-        :param source: string of rtsp://...
+        :param source: string of rtsp url example: rtsp://...
         """
         if source:
+            print(f"[INFO]: source: {source}")
             self.cap = cv2.VideoCapture(source)
+
+            if self.cap.isOpened():
+                width = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+                height = self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+                print(f"[INFO]: video width: {width}, video height: {height}")
+
+                self.window = tk.Tk()
+                self._config_window()
+                self._add_widgets()
+
+                self.window.after(100, self.__update_image)
+                self.window.mainloop()
+
+            else:
+                print(f"[ERROR]: Could not open stream {source}")
         else:
-            print("No source given")
+            print("[ERROR]: No source given")
 
-        if self.cap.isOpened():
-            width = self.cap.get(cv2.CAP_PROP_FRAME_WIDTH)
-            height = self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+    def _config_window(self) -> None:
+        """
+        configure window
+        :return: None
+        """
+        self.window.title('HyperStream')
+        self.window.resizable(width=tk.FALSE, height=tk.FALSE)
+        self.window.geometry("720x720+0+0")
+        self.window.config(bg="black")
 
-            print(f"video source width: {width} x height: {height}")
+        self.window.bind('<Escape>', self._exit)
 
-            self.window = tk.Tk()
-            self.window.title('HyperStream')
-            self.window.resizable(width=tk.FALSE, height=tk.FALSE)
-            self.window.geometry("720x720+0+0")
-            self.window.config(bg="black")
-            self.window.bind('<Escape>', exit)
-            self.window.attributes("-fullscreen", True)
+        self.window.attributes("-fullscreen", True)
 
-            self.label = tk.Label(self.window)
-            self.label.pack()
+    def _add_widgets(self) -> None:
+        """
+        add widgets to window
+        :return: None
+        """
+        self._LABEL_VIDEO = tk.Label(self.window)
+        self._LABEL_VIDEO.pack()
 
-            self.window.after(100, self.update_image)
-            self.window.mainloop()
-
-        else:
-            print(f"Could not open stream {source}")
-
-    def update_image(self):
+    def __update_image(self) -> None:
         """
         get frames from stream, convert and show into label
         :return: None
@@ -57,19 +75,20 @@ class HyperStream:
             img_pil = Image.fromarray(img_rgb)
             img_fin = ImageTk.PhotoImage(img_pil)
 
-            self.label.configure(image=img_fin)
-            self.label.image = img_fin
+            self._LABEL_VIDEO.configure(image=img_fin)
+            self._LABEL_VIDEO.image = img_fin
 
-        self.window.after(5, self.update_image)
+        self.window.after(5, self.__update_image)
 
-    def exit(self):
+    def _exit(self, event) -> None:
         """
         release stream and close window
         :return: None
         """
+        print(f"[INFO]: {event}")
         self.cap.release()
         self.window.quit()
 
 
 if __name__ == '__main__':
-    RUN = HyperStream("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4")
+    HyperStream(source='rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4')
