@@ -5,7 +5,7 @@ import time
 
 class HyperClock:
     """
-    simple digital clock for hyperpixel 4.0 square
+    tkinter window class to display a digital clock on hyperpixel 4.0 square
     """
 
     _LABEL_TIME = None
@@ -14,9 +14,9 @@ class HyperClock:
 
     def __init__(self, user: str = 'john', fullscreen: bool = False) -> None:
         """
-        create window and start loop
-        :param user: duino username
-        :param fullscreen: set window fullscreen mode
+        create tkinter window and start loop
+        :param user: duino username as string
+        :param fullscreen: set window fullscreen mode as bool
         """
         print(f"[INFO]: username: {user}, fullscreen: {fullscreen}")
         self.user = str(user)
@@ -31,7 +31,7 @@ class HyperClock:
 
     def _config_window(self) -> None:
         """
-        configure window
+        configure tkinter window, bind events and set fullscreen mode
         :return: None
         """
         self.window.title(f"HyperClock: {self.user}")
@@ -46,7 +46,7 @@ class HyperClock:
 
     def _add_widgets(self) -> None:
         """
-        add widgets to window
+        add specific tkinter widgets to window
         :return: None
         """
         big_font = tkf.Font(family="Open 24 Display St", size=90, weight="normal")
@@ -62,7 +62,7 @@ class HyperClock:
 
     def __set_current_time(self) -> None:
         """
-        get values and set into labels
+        get time/date values and update tkinter labels
         :return: None
         """
         current_time = f"{time.strftime('%H')}:{time.strftime('%M')}:{time.strftime('%S')}"
@@ -77,12 +77,12 @@ class HyperClock:
 
     def _exit(self, event) -> None:
         """
-        exit and close window
+        exit and close tkinter window
         :param event:
         :return: None
         """
         print(f"[INFO]: {event}")
-        self.window.quit()
+        self.window.destroy()
 
 
 if __name__ == '__main__':

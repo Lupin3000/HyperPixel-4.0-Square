@@ -5,7 +5,7 @@ import requests
 
 class HyperDuinoCoin:
     """
-    simple app to display duino coins
+    tkinter window class to display duino coins status for specific user on hyperpixel 4.0 square
     """
 
     _LABEL_USER = None
@@ -14,9 +14,9 @@ class HyperDuinoCoin:
 
     def __init__(self, user: str = 'revox', fullscreen: bool = False) -> None:
         """
-        create window and start loop
-        :param user: duino username
-        :param fullscreen: set window fullscreen mode
+        create tkinter window and start loop
+        :param user: duino username as string
+        :param fullscreen: set window fullscreen mode as bool
         """
         print(f"[INFO]: username: {user}, fullscreen: {fullscreen}")
         self.user = str(user)
@@ -31,7 +31,7 @@ class HyperDuinoCoin:
 
     def _config_window(self) -> None:
         """
-        configure window
+        configure tkinter window, bind events and set fullscreen mode
         :return: None
         """
         self.window.title(f"HyperCoin: {self.user}")
@@ -46,7 +46,7 @@ class HyperDuinoCoin:
 
     def _add_widgets(self) -> None:
         """
-        add widgets to window
+        add specific tkinter widgets to window
         :return: None
         """
         big_font = tkf.Font(family="Arial", size=90, weight='normal')
@@ -62,7 +62,7 @@ class HyperDuinoCoin:
 
     def __set_values(self) -> None:
         """
-        call rest api and update labels
+        call rest api and update tkinter labels
         :return: None
         """
         response = requests.get('https://server.duinocoin.com/users/' + self.user)
@@ -84,7 +84,7 @@ class HyperDuinoCoin:
 
     def _exit(self, event) -> None:
         """
-        exit and close window
+        exit and close tkinter window
         :return: None
         """
         print(f"[INFO]: {event}")

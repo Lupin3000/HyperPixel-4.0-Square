@@ -6,14 +6,14 @@ from PIL import ImageTk
 
 class HyperStream:
     """
-    simple rtsp client for hyperpixel 4.0 square
+    tkinter window to display a rtsp video stream on hyperpixel 4.0 square
     """
 
     _LABEL_VIDEO = None
 
     def __init__(self, source: str) -> None:
         """
-        initiate object with all settings
+        create tkinter window and start loop
         :param source: string of rtsp url example: rtsp://...
         """
         if source:
@@ -39,7 +39,7 @@ class HyperStream:
 
     def _config_window(self) -> None:
         """
-        configure window
+        configure tkinter window, bind events and set fullscreen mode
         :return: None
         """
         self.window.title('HyperStream')
@@ -53,7 +53,7 @@ class HyperStream:
 
     def _add_widgets(self) -> None:
         """
-        add widgets to window
+        add specific tkinter widgets to window
         :return: None
         """
         self._LABEL_VIDEO = tk.Label(self.window)
@@ -61,7 +61,7 @@ class HyperStream:
 
     def __update_image(self) -> None:
         """
-        get frames from stream, convert and show into label
+        get frames from stream, convert and show via tkinter label
         :return: None
         """
         dim = (720, 720)
@@ -87,7 +87,7 @@ class HyperStream:
         """
         print(f"[INFO]: {event}")
         self.cap.release()
-        self.window.quit()
+        self.window.destroy()
 
 
 if __name__ == '__main__':
