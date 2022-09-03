@@ -10,11 +10,11 @@ high-speed, 4.0" display with optional touchscreen for Raspberry Pi written in P
 
 ## Table of contents/examples
 
-- [HyperClock](./clock/hyperclock.py)
-- [HyperStream](./rtsp/hyperstream.py) *Note: does not work on Raspberry PI Zero*
-- [HyperCarousel](./carousel/hypercarousel.py)
-- [HyperVideoCarousel](./carousel/hypervideocarousel.py) *Note: does not work on Raspberry PI Zero*
-- [HyperCoin](./rest/duinocoin.py)
+- [HyperClock](tk_modules/hyperclock.py) Tkinter
+- [HyperCoin](tk_modules/duinocoin.py) Tkinter
+- [HyperStream](tk_modules/hyperstream.py) Tkinter: *Raspberry PI 4 only*
+- [HyperCarousel](kv_modules/hypercarousel.py) Kivy
+- [HyperVideoCarousel](kv_modules/hypervideocarousel.py) Kivy: *Raspberry PI 4 only*
 
 ## Note
 
@@ -22,7 +22,7 @@ high-speed, 4.0" display with optional touchscreen for Raspberry Pi written in P
 
 ## Usage
 
-### Run example clock
+### Run application form terminal
 
 > You can run all examples in this form.
 
@@ -34,7 +34,7 @@ $ cd ~
 $ git clone https://github.com/Lupin3000/HyperPixel-4.0-Square.git
 
 # change into example (eq. clock)
-$ cd ~/HyperPixel-4.0-Square/clock/
+$ cd ~/HyperPixel-4.0-Square/tk_modules/
 
 # execute (stop with <ESCAPE>)
 $ python3 hyperclock.py
