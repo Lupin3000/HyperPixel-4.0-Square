@@ -8,9 +8,9 @@ class HyperDuinoCoin:
     simple app to display duino coins
     """
 
-    LABEL_USER = None
-    LABEL_BALANCE = None
-    LABEl_MINERS = None
+    _LABEL_USER = None
+    _LABEL_BALANCE = None
+    _LABEl_MINERS = None
 
     def __init__(self, user: str = 'revox', fullscreen: bool = False) -> None:
         """
@@ -19,8 +19,10 @@ class HyperDuinoCoin:
         :param fullscreen: set window fullscreen mode
         """
         if user:
+            print(f"[INFO]: username: {user}, fullscreen: {fullscreen}")
             self.user = str(user)
             self.fullscreen = bool(fullscreen)
+
             self.window = tk.Tk()
             self._config_window()
             self._add_widgets()
@@ -39,7 +41,8 @@ class HyperDuinoCoin:
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
         self.window.geometry("720x720+0+0")
         self.window.config(bg="black")
-        self.window.bind('<Escape>', exit)
+
+        self.window.bind('<Escape>', self._exit)
 
         if self.fullscreen:
             self.window.attributes("-fullscreen", True)
@@ -52,14 +55,13 @@ class HyperDuinoCoin:
         big_font = tkf.Font(family="Arial", size=90, weight='normal')
         small_font = tkf.Font(family="Arial", size=20, weight='normal')
 
-        self.LABEL_USER = tk.Label(self.window, text=self.user, font=big_font, bg="black", fg="#39ff14")
-        self.LABEL_USER.place(anchor=tk.CENTER, relx=.5, rely=.4)
+        self._LABEL_USER = tk.Label(self.window, text=self.user, font=big_font, bg="black", fg="#39ff14")
+        self._LABEL_BALANCE = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
+        self._LABEl_MINERS = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
 
-        self.LABEL_BALANCE = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
-        self.LABEL_BALANCE.place(anchor=tk.CENTER, relx=.5, rely=.5)
-
-        self.LABEl_MINERS = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
-        self.LABEl_MINERS.place(anchor=tk.CENTER, relx=.5, rely=.55)
+        self._LABEL_USER.place(anchor=tk.CENTER, relx=.5, rely=.4)
+        self._LABEL_BALANCE.place(anchor=tk.CENTER, relx=.5, rely=.5)
+        self._LABEl_MINERS.place(anchor=tk.CENTER, relx=.5, rely=.55)
 
     def __set_values(self) -> None:
         """
@@ -73,18 +75,18 @@ class HyperDuinoCoin:
             txt_balance = f"{json_response['result']['balance']['balance']} DUCO\'s"
             txt_miners = f"Active miners: {len(json_response['result']['miners'])}"
 
-            self.LABEL_BALANCE.configure(text=txt_balance)
-            self.LABEl_MINERS.configure(text=txt_miners)
+            self._LABEL_BALANCE.configure(text=txt_balance)
+            self._LABEl_MINERS.configure(text=txt_miners)
 
         self.window.after(1000, self.__set_values)
 
-    def exit(self, event) -> None:
+    def _exit(self, event) -> None:
         """
         exit and close window
-        :param event:
         :return: None
         """
-        self.window.quit()
+        print(f"[INFO]: {event}")
+        self.window.destroy()
 
 
 if __name__ == '__main__':
