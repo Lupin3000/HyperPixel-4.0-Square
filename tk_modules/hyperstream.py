@@ -46,7 +46,7 @@ class HyperStream:
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
         self.window.geometry("720x720+0+0")
         self.window.config(bg="black")
-
+        self.window.protocol("WM_DELETE_WINDOW", self._on_closing)
         self.window.bind('<Escape>', self._exit)
 
         self.window.attributes("-fullscreen", True)
@@ -79,6 +79,13 @@ class HyperStream:
             self._LABEL_VIDEO.image = img_fin
 
         self.window.after(5, self.__update_image)
+
+    def _on_closing(self) -> None:
+        """
+        catch mouse close window event
+        :return: None
+        """
+        self._exit('close window by mouse')
 
     def _exit(self, event) -> None:
         """

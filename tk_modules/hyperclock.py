@@ -38,7 +38,7 @@ class HyperClock:
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
         self.window.geometry("720x720+0+0")
         self.window.config(bg="black")
-
+        self.window.protocol("WM_DELETE_WINDOW", self._on_closing)
         self.window.bind('<Escape>', self._exit)
 
         if self.fullscreen:
@@ -74,6 +74,13 @@ class HyperClock:
         self._LABEL_DATE.configure(text=current_date)
 
         self.window.after(1000, self.__set_current_time)
+
+    def _on_closing(self) -> None:
+        """
+        catch mouse close window event
+        :return: None
+        """
+        self._exit('close window by mouse')
 
     def _exit(self, event) -> None:
         """
