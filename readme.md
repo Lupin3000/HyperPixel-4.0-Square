@@ -13,7 +13,7 @@ high-speed, 4.0" display with optional touchscreen for Raspberry Pi written in P
 - [HyperClock](tk_modules/hyperclock.py) Tkinter
 - [HyperCoin](tk_modules/duinocoin.py) Tkinter
 - [HyperStream](tk_modules/hyperstream.py) Tkinter: *Raspberry PI 4 only*
-- [HyperWeather](tk_modules/hyperweather.py) Tkinter (_by API Key_)
+- [HyperWeather](tk_modules/hyperweather.py) Tkinter (_by API Key from openweathermap.org_)
 - [HyperCarousel](kv_modules/hypercarousel.py) Kivy
 - [HyperVideoCarousel](kv_modules/hypervideocarousel.py) Kivy: *Raspberry PI 4 only*
 

@@ -136,5 +136,5 @@ class HyperWeather:
 
 
 if __name__ == '__main__':
-    # get free api key from openweather.org
+    # get free api key from openweathermap.org
     HyperWeather(apikey='', measurement='metric')
