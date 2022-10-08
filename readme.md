@@ -3,20 +3,23 @@
 Examples for Pimoroni's [HyperPixel 4.0 Square](https://shop.pimoroni.com/products/hyperpixel-4-square) high-resolution, 
 high-speed, 4.0" display with optional touchscreen for Raspberry Pi written in Python 3.
 
-| Python | Description             |
-|--------|-------------------------|
-| 3.7    | development on macos    |
-| 3.9    | testing on Raspberry Pi |
+| Python | Description                  |
+|--------|------------------------------|
+| 3.7    | development on macos         |
+| 3.9    | testing on Raspberry Pi Zero |
+| 3.9    | testing on Raspberry Pi 4    |
 
 ## Table of contents/examples
 
-- Tkinter: [HyperClock](tk_modules/hyperclock.py)
-- Tkinter: [HyperCoin](tk_modules/duinocoin.py)
-- Tkinter: [HyperStream](tk_modules/hyperstream.py) *Raspberry PI 4 only*
-- Tkinter: [HyperWeather](tk_modules/hyperweather.py) *by API Key from openweathermap.org*
-- Tkinter: [HyperHolidays](tk_modules/hyperholidays.py)
-- Kivy: [HyperCarousel](kv_modules/hypercarousel.py)
-- Kivy: [HyperVideoCarousel](kv_modules/hypervideocarousel.py) *Raspberry PI 4 only*
+- Tkinter
+  - [HyperClock](tk_modules/hyperclock.py)
+  - [HyperCoin](tk_modules/duinocoin.py)
+  - [HyperStream](tk_modules/hyperstream.py) *Raspberry PI 4 only*
+  - [HyperWeather](tk_modules/hyperweather.py) *API Key from openweathermap.org needed*
+  - [HyperHolidays](tk_modules/hyperholidays.py)
+- Kivy
+  - [HyperCarousel](kv_modules/hypercarousel.py)
+  - [HyperVideoCarousel](kv_modules/hypervideocarousel.py) *Raspberry PI 4 only*
 
 ## Note
 
