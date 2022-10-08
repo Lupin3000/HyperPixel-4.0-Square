@@ -53,6 +53,25 @@ $ mkdir ~/.fonts
 $ cp ~/HyperPixel-4.0-Square/*.ttf ~/.fonts/
 ```
 
+### Autostart application
+
+```shell
+# create directory
+$ mkdir -p ~/.config/autostart
+
+# create desktop file
+$ touch ~/.config/autostart/display.desktop
+```
+
+Example for display.desktop
+
+```
+[Desktop Entry]
+Type=Application
+Name=HyperWeather
+Exec=/usr/bin/python3 ~/HyperPixel-4.0-Square/tk_modules/hyperweather.py
+```
+
 ### Raspberry Bullseye
 
 On bullseye you don't need to install any library/package for Hyperpixel! Also, i2c don't need to be enabled. 
