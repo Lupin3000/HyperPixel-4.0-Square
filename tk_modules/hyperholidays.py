@@ -22,8 +22,8 @@ class HyperHoliday:
         create tkinter window and start loop
         :param country: 2-letter country code (ISO3166) as string eq. CH, US or etc.
         :param region: optional subdivisions as string eq. AG, AR, AI, BL, BS and etc.
-        :param vacation: dictionary of dates and description
-        :param fullscreen: set window fullscreen mode as bool
+        :param vacation: optional dictionary of dates and description
+        :param fullscreen: optional set window fullscreen mode as bool
         """
         if vacation is None:
             vacation = {}
