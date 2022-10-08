@@ -4,3 +4,4 @@ requests
 Kivy==2.1.0
 Pillow
 ffpyplayer
+holidays
