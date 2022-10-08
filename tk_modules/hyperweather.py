@@ -11,6 +11,7 @@ class HyperWeather:
     _LABEL_CITY = None
     _LABEL_TEMPERATURE = None
     _LABEL_DESCRIPTION = None
+    _LABEL_ADDITIONAL = None
 
     def __init__(self, apikey: str,
                  zipcode: int = 8405,
@@ -47,8 +48,8 @@ class HyperWeather:
         """
         self.window.title(f"HyperWeather")
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
-        self.window.geometry("720x720+0+0")
-        self.window.config(bg="black")
+        self.window.geometry("480x480+0+0")
+        self.window.config(bg="black", cursor='none')
         self.window.protocol("WM_DELETE_WINDOW", self._on_closing)
         self.window.bind('<Escape>', self._exit)
 
@@ -60,17 +61,20 @@ class HyperWeather:
         add specific tkinter widgets to window
         :return: None
         """
-        temp_font = tkf.Font(family='Arial', size=20, weight='normal')
-        city_font = tkf.Font(family='Arial', size=20, weight='normal')
-        desc_font = tkf.Font(family='Arial', size=10, weight='normal')
+        city_font = tkf.Font(family='Technology', size=40, weight='normal')
+        temp_font = tkf.Font(family='LED Display7', size=55, weight='normal')
+        desc_font = tkf.Font(family='Technology', size=20, weight='normal')
+        additional_font = tkf.Font(family='Technology', size=15, weight='normal')
 
-        self._LABEL_CITY = tk.Label(self.window, text='unknown', font=city_font, bg="black", fg='#39ff14')
-        self._LABEL_TEMPERATURE = tk.Label(self.window, text='unknown', font=temp_font, bg="black", fg='#39ff14')
-        self._LABEL_DESCRIPTION = tk.Label(self.window, text='unknown', font=desc_font, bg="black", fg='#39ff14')
+        self._LABEL_CITY = tk.Label(self.window, text='unknown', font=city_font, bg='black', fg='#eeeeee')
+        self._LABEL_TEMPERATURE = tk.Label(self.window, text='unknown', font=temp_font, bg='black', fg='#8ED1FC')
+        self._LABEL_DESCRIPTION = tk.Label(self.window, text='unknown', font=desc_font, bg='black', fg='#eeeeee')
+        self._LABEL_ADDITIONAL = tk.Label(self.window, text='unknown', font=additional_font, bg='black', fg='#eeeeee')
 
-        self._LABEL_CITY.place(anchor=tk.CENTER, relx=.5, rely=.4)
+        self._LABEL_CITY.place(anchor=tk.CENTER, relx=.5, rely=.35)
         self._LABEL_TEMPERATURE.place(anchor=tk.CENTER, relx=.5, rely=.5)
         self._LABEL_DESCRIPTION.place(anchor=tk.CENTER, relx=.5, rely=.6)
+        self._LABEL_ADDITIONAL.place(anchor=tk.CENTER, relx=.5, rely=.67)
 
     @staticmethod
     def get_measurement_units(measurement: str) -> str:
@@ -96,6 +100,7 @@ class HyperWeather:
         city = ''
         temp = ''
         desc = ''
+        additional = ''
 
         zip_code = f"{self.zipcode},{self.countrycode}"
         api_url = 'https://api.openweathermap.org/data/2.5/weather'
@@ -107,13 +112,15 @@ class HyperWeather:
         if response.status_code == 200 and 'application/json' in response.headers.get('Content-Type'):
             json_response = response.json()
             city = f"{json_response['name']}"
-            temp = f"{json_response['main']['temp']} {HyperWeather.get_measurement_units(self.measurement)}"
+            temp = f"{json_response['main']['temp']}{HyperWeather.get_measurement_units(self.measurement)}"
             desc = f"{json_response['weather'][0]['description']}"
+            additional = f"Pressure: {json_response['main']['pressure']} hPa - Humidity: {json_response['main']['humidity']} %"
         try:
             self.count += 1
             self._LABEL_CITY.configure(text=city)
             self._LABEL_TEMPERATURE.configure(text=temp)
             self._LABEL_DESCRIPTION.configure(text=desc)
+            self._LABEL_ADDITIONAL.configure(text=additional)
         except KeyError as err:
             print(f"[ERROR]: {err}")
 
@@ -137,4 +144,4 @@ class HyperWeather:
 
 if __name__ == '__main__':
     # get free api key from openweathermap.org
-    HyperWeather(apikey='', measurement='metric')
+    HyperWeather(apikey='', measurement='metric', fullscreen=True)
