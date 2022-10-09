@@ -111,7 +111,7 @@ class HyperHoliday:
         elif count > 0 < 10:
             txt_info = 'It is almost time'
         else:
-            txt_info = 'Finally vacation'
+            txt_info = f"Finally {self.holidays.get(self.today)}"
             count = 'YES'
 
         self._LABEL_NUM.config(text=count)
@@ -136,4 +136,4 @@ class HyperHoliday:
 
 
 if __name__ == '__main__':
-    HyperHoliday(region='ZH', vacation={'2022-10-08': 'private'})
+    HyperHoliday(region='ZH', vacation={'2022-10-21': 'vacation'}, fullscreen=True)
