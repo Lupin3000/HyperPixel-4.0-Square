@@ -9,17 +9,14 @@ class HyperClock:
     """
 
     _LABEL_TIME = None
-    _LABEL_DAY = None
     _LABEL_DATE = None
 
-    def __init__(self, user: str = 'john', fullscreen: bool = False) -> None:
+    def __init__(self, fullscreen: bool = False) -> None:
         """
         create tkinter window and start loop
-        :param user: duino username as string
         :param fullscreen: set window fullscreen mode as bool
         """
-        print(f"[INFO]: username: {user}, fullscreen: {fullscreen}")
-        self.user = str(user)
+        print(f"[INFO]: fullscreen: {fullscreen}")
         self.fullscreen = bool(fullscreen)
 
         self.window = tk.Tk()
@@ -34,7 +31,7 @@ class HyperClock:
         configure tkinter window, bind events and set fullscreen mode
         :return: None
         """
-        self.window.title(f"HyperClock: {self.user}")
+        self.window.title('HyperClock')
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
         self.window.geometry("720x720+0+0")
         self.window.config(bg="black")
@@ -42,6 +39,7 @@ class HyperClock:
         self.window.bind('<Escape>', self._exit)
 
         if self.fullscreen:
+            self.window.config(cursor='none')
             self.window.attributes("-fullscreen", True)
 
     def _add_widgets(self) -> None:
@@ -53,12 +51,10 @@ class HyperClock:
         small_font = tkf.Font(family="Open 24 Display St", size=20, weight="normal")
 
         self._LABEL_TIME = tk.Label(self.window, text='', font=big_font, bg="black", fg="#39ff14")
-        self._LABEL_DAY = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
         self._LABEL_DATE = tk.Label(self.window, text='', font=small_font, bg="black", fg="#39ff14")
 
         self._LABEL_TIME.place(anchor=tk.CENTER, relx=.5, rely=.5)
-        self._LABEL_DAY.place(anchor=tk.CENTER, relx=.65, rely=.6)
-        self._LABEL_DATE.place(anchor=tk.CENTER, relx=.4, rely=.6)
+        self._LABEL_DATE.place(anchor=tk.CENTER, relx=.5, rely=.65)
 
     def __set_current_time(self) -> None:
         """
@@ -66,11 +62,9 @@ class HyperClock:
         :return: None
         """
         current_time = f"{time.strftime('%H')}:{time.strftime('%M')}:{time.strftime('%S')}"
-        current_day = f"{time.strftime('%A')}"
-        current_date = f"{time.strftime('%B')} {time.strftime('%d')} {time.strftime('%Y')}"
+        current_date = f"{time.strftime('%B')} {time.strftime('%d')} {time.strftime('%Y')} {time.strftime('%A')}"
 
         self._LABEL_TIME.configure(text=current_time)
-        self._LABEL_DAY.configure(text=current_day)
         self._LABEL_DATE.configure(text=current_date)
 
         self.window.after(1000, self.__set_current_time)

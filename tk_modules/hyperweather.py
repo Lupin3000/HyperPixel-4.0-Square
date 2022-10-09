@@ -46,10 +46,10 @@ class HyperWeather:
         configure tkinter window behavior
         :return: None
         """
-        self.window.title(f"HyperWeather")
+        self.window.title('HyperWeather')
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
         self.window.geometry("720x720+0+0")
-        self.window.config(bg="black")
+        self.window.config(bg='black')
         self.window.protocol("WM_DELETE_WINDOW", self._on_closing)
         self.window.bind('<Escape>', self._exit)
 

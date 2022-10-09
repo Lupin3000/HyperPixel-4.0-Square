@@ -47,7 +47,7 @@ class HyperHoliday:
         configure tkinter window behavior
         :return: None
         """
-        self.window.title(f'HyperHoliday')
+        self.window.title('HyperHoliday')
         self.window.resizable(width=tk.FALSE, height=tk.FALSE)
         self.window.geometry('720x720+0+0')
         self.window.config(bg='black')
