@@ -18,6 +18,7 @@ high-speed, 4.0" display with optional touchscreen for Raspberry Pi written in P
   - [HyperWeather](tk_modules/hyperweather.py) *API Key from openweathermap.org needed*
   - [HyperHolidays](tk_modules/hyperholidays.py)
   - [HyperTimeWeather](tk_modules/hypertimeweather.py) *API Key from openweathermap.org needed*
+  - [HyperText](tk_modules/hypertext.py)
 - Kivy
   - [HyperCarousel](kv_modules/hypercarousel.py)
   - [HyperVideoCarousel](kv_modules/hypervideocarousel.py) *Raspberry PI 4 only*
@@ -105,6 +106,27 @@ $ pip3 install -r requirements.txt
 
 # verify installed pip packages (optional)
 $ pip3 freeze
+```
+
+### Install packages for speach recognition
+
+> Depend on API you like to use!!!
+
+```shell
+# minimum needed packages
+$ sudo apt install espeak python3-pyaudio
+
+# optional or if issues (sphinx)
+$ sudo apt install flac pavucontrol libportaudio2 libportaudiocpp0 portaudio19-dev
+$ sudo apt install swig libpulse-dev bison libasound2-dev alsa-utils gcc python3-pocketsphinx
+```
+
+```shell
+# list playback hardware devices
+$ aplay -l
+
+# list capture hardware devices
+$ arecord -l
 ```
 
 ## Error
